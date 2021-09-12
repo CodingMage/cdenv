@@ -1,16 +1,11 @@
 import tw, { css } from "twin.macro";
 import Btn from "../component/Buttons/Btn";
+import Image from "next/image";
 
 export default function Home() {
   return (
     <div>
-      <Btn type="primary" link="#">
-        Primary
-      </Btn>
-
-      <Btn inactive={true} link="#">
-        Default
-      </Btn>
+      <h1>hello</h1>
     </div>
   );
 }
