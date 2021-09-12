@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const BtnDefault = styled.button`
   font-size: 0.875rem;
-  ${tw`cursor-pointer flex justify-center items-center bg-transparent  font-medium w-20 h-12  p-4 text-white rounded-md border-solid border-2 border-white `};
+  ${tw`cursor-pointer flex justify-center items-center bg-transparent  font-medium  h-12  p-4 text-white   rounded-md border-solid border-2 border-white `};
 `;
 
 const BtnPrimary = tw(
@@ -28,6 +28,23 @@ const BtnDefaultFull = styled.button`
 
 const Btn = ({ link, type, children, click, disable = false }) => {
   switch (type) {
+    case "transparent": {
+      if (link === "#") {
+        return (
+          <BtnDefault disabled={disable} onClick={click}>
+            {children}
+          </BtnDefault>
+        );
+      }
+      return (
+        <Link href={link}>
+          <BtnDefault disabled={disable} onClick={click}>
+            {children}
+          </BtnDefault>
+        </Link>
+      );
+    }
+
     case "primary": {
       if (link === "#") {
         return (
