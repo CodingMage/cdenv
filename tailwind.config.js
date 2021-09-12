@@ -1,12 +1,21 @@
 const colors = require("tailwindcss/colors");
-
+const defaultTheme = require("tailwindcss/defaultTheme");
 module.exports = {
   mode: "jit",
   // These paths are just examples, customize them to match your project structure
 
   purge: ["./public/**/*.html", "./src/**/*.{js,jsx,ts,tsx,vue}"],
+  plugins: [
+    // ...
+    require("tailwind-scrollbar"),
+  ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ["Ubuntu", ...defaultTheme.fontFamily.sans],
+        fancy: ["Dancing Script"],
+        playfair: ["Playfair Display"],
+      },
       colors: {
         borderBlue: "#01E4F0",
         "custom-inactive": "#F4F4F4",

@@ -1,7 +1,34 @@
 import tw, { css, styled } from "twin.macro";
 import Btn from "../component/Buttons/Btn";
 import Image from "next/image";
+import AboutCard from "../component/AboutCard";
 
+const about = [
+  {
+    scr: "/assets/svg/Hostable.svg",
+    title: "Self hostable",
+    description:
+      "cdEnv is a self-hostable and secured system for storing and acessing keys and variables via HTTP API and CLI.",
+  },
+  {
+    scr: "/assets/svg/shield.svg",
+    title: "Secure",
+    description:
+      "cdEnv is a self-hostable and secured system for storing and acessing keys and variables via HTTP API and CLI.",
+  },
+  {
+    scr: "/assets/svg/Accessible.svg",
+    title: "Accessible",
+    description:
+      "cdEnv is a self-hostable and secured system for storing and acessing keys and variables via HTTP API and CLI.",
+  },
+  {
+    scr: "/assets/svg/deploy.svg",
+    title: "Easy to deploy",
+    description:
+      "cdEnv is a self-hostable and secured system for storing and acessing keys and variables via HTTP API and CLI.",
+  },
+];
 const Hero = styled.div`
   background: linear-gradient(0deg, #283a8f, #283a8f);
 `;
@@ -17,7 +44,7 @@ const Left = styled.div`
 const HostBtn = tw.button`flex justify-center items-center px-[30px] py-[25px] h-[23px] bg-[#01E4F0] text-black border-solid border-0 rounded-md text-sm cursor-pointer`;
 export default function Home() {
   return (
-    <div>
+    <div className="home">
       <Hero>
         <Nav>
           <Image src="/assets/svg/cdEnv_logo.svg" width="88" height="27" />
@@ -60,6 +87,28 @@ export default function Home() {
           </div>
         </div>
       </Hero>
+
+      <div tw="bg-white pb-[173px]">
+        <div tw="flex justify-center items-center flex-col pt-[70px]">
+          <div tw="text-[#1A254A] font-bold text-[50px] pb-4">
+            What is cdEnv?
+          </div>
+          <div tw="text-[#8E8E8E] text-[20px] leading-[26px] max-w-[541.99px] text-center ">
+            cdEnv is a self-hostable and secured system for storing and acessing
+            keys and variables via HTTP API and CLI.
+          </div>
+        </div>
+        <div tw="grid grid-cols-2 place-items-center gap-x-[50px] gap-y-10 max-w-[1114px] my-0 mx-auto mt-[100px] ">
+          {about.map((item, idx) => (
+            <AboutCard
+              key={`AboutCard ${idx}`}
+              src={item.scr}
+              title={item.title}
+              description={item.description}
+            />
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
