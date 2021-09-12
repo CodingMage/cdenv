@@ -2,6 +2,7 @@ import tw, { css, styled } from "twin.macro";
 import Btn from "../component/Buttons/Btn";
 import Image from "next/image";
 import AboutCard from "../component/AboutCard";
+import Link from "next/link";
 
 const about = [
   {
@@ -35,6 +36,9 @@ const Hero = styled.div`
 
 const Nav = tw.div`
 flex justify-between items-center px-12 p-7
+`;
+const Footer = tw.div`
+flex justify-between items-center px-[57.55px] py-[36.5px] bg-white text-[#8E8E8E]
 `;
 const Left = styled.div`
   padding-left: 50.65px;
@@ -109,6 +113,42 @@ export default function Home() {
           ))}
         </div>
       </div>
+
+      <div tw="bg-[#283A8F]">
+        <div tw="flex justify-center items-center flex-col pt-[70px]">
+          <div tw="text-[#01E4F0] font-bold text-[50px] pb-4">Learn more</div>
+          <div tw="text-white text-[20px] leading-[26px] max-w-[541.99px] text-center ">
+            Access cdEnv documentation on Github to know all about the project
+            and how to better us it.
+          </div>
+        </div>
+        <div tw="flex justify-center items-center mt-[77px] pb-[161.44px]">
+          <Image
+            src="/assets/img/cdenv1.png"
+            width="908"
+            height="522"
+            objectFit="contain"
+          />
+        </div>
+      </div>
+
+      <Footer>
+        <Image src="/assets/img/cdEnvLogo.png" width="88" height="27" />
+        <div tw="flex items-center justify-center gap-[60px] ">
+          <Link tw="text-[#8E8E8E] text-[16px] leading-[18px]" href="">
+            <a> Host environment</a>
+          </Link>
+          <Link tw="text-[#8E8E8E] text-[16px] leading-[18px]" href="">
+            <a> FAQs</a>
+          </Link>
+          <Link tw="text-[#8E8E8E] text-[16px] leading-[18px]" href="">
+            <a> Documentation</a>
+          </Link>
+        </div>
+        <Link tw="text-[#8E8E8E] text-[16px] leading-[18px]" href="">
+          <a> © Copyright 2021.</a>
+        </Link>
+      </Footer>
     </div>
   );
 }
