@@ -53,10 +53,10 @@ export default function Home() {
         <Nav>
           <Image src="/assets/svg/cdEnv_logo.svg" width="88" height="27" />
           <div tw="flex items-center justify-center gap-8">
-            <Btn type="transparent" link="#">
+            <Btn type="transparent" link="/authentication/signin">
               <p tw="text-borderBlue">Log in</p>
             </Btn>
-            <Btn type="transparent" link="#">
+            <Btn type="transparent" link="/authentication/signup">
               <p tw="text-borderBlue">Sign Up</p>
             </Btn>
           </div>
