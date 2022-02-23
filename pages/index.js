@@ -3,7 +3,7 @@ import Btn from "../component/Buttons/Btn";
 import Image from "next/image";
 import AboutCard from "../component/AboutCard";
 import Link from "next/link";
-
+import { motion } from "framer-motion";
 const about = [
   {
     scr: "/assets/svg/Hostable.svg",
@@ -45,7 +45,9 @@ const Left = styled.div`
   ${tw`pt-32  flex justify-center items-center flex-col`}
 `;
 
-const HostBtn = tw.button`flex justify-center items-center px-[30px] py-[25px] h-[23px] bg-[#01E4F0] text-black border-solid border-0 rounded-md text-sm cursor-pointer`;
+const HostBtn = tw(
+  motion.button
+)`flex justify-center items-center px-[30px] py-[25px] h-[23px] bg-[#01E4F0] text-black border-solid border-0 rounded-md text-sm cursor-pointer`;
 export default function Home() {
   return (
     <div className="home">
@@ -78,7 +80,17 @@ export default function Home() {
                 accessing keys and variables via HTTP API and CLI.
               </div>
 
-              <HostBtn>Host environment</HostBtn>
+              <HostBtn
+                whileHover={{
+                  y: 5,
+                  transition: {
+                    y: { type: "spring", stiffness: 100 },
+                    duration: 0.5,
+                  },
+                }}
+              >
+                Host environment
+              </HostBtn>
             </div>
           </Left>
           <div tw="pt-[98.94px] flex justify-end pr-14 ">

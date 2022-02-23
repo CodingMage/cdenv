@@ -24,6 +24,9 @@ const FormField = ({
   value,
   action,
   minLength,
+  register,
+  required = false,
+  errors,
 }) => {
   return (
     <FormFieldShell full={full}>
@@ -37,8 +40,15 @@ const FormField = ({
           value={value}
           onChange={action}
           minLength={minLength}
-          required
+          {...register(name, { required: "This is required." })}
         />
+        {/* <p tw="text-red-400 text-sm">
+          {
+            //If error exists in the textField
+            errors[name] && errors[name].message
+          }
+        </p> */}
+        <div></div>
       </div>
     </FormFieldShell>
   );

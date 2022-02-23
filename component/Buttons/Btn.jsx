@@ -1,7 +1,8 @@
 import tw, { styled } from "twin.macro";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
-const BtnDefault = styled.button`
+const BtnDefault = styled(motion.button)`
   font-size: 0.875rem;
   ${tw`cursor-pointer flex justify-center items-center bg-transparent  font-medium  h-12  p-4 text-white   rounded-md border-solid border-2 border-white `};
 `;
@@ -37,8 +38,18 @@ const Btn = ({ link, type, children, click, disable = false }) => {
         );
       }
       return (
-        <Link href={link}>
-          <BtnDefault disabled={disable} onClick={click}>
+        <Link href={link} passHref={true}>
+          <BtnDefault
+            disabled={disable}
+            onClick={click}
+            whileHover={{
+              y: 5,
+              transition: {
+                ease: "linear",
+                duration: 0.5,
+              },
+            }}
+          >
             {children}
           </BtnDefault>
         </Link>
@@ -48,13 +59,23 @@ const Btn = ({ link, type, children, click, disable = false }) => {
     case "primary": {
       if (link === "#") {
         return (
-          <BtnPrimary disabled={disable} onClick={click}>
+          <BtnPrimary
+            disabled={disable}
+            onClick={click}
+            whileHover={{
+              y: 5,
+              transition: {
+                y: { type: "spring", stiffness: 100 },
+                duration: 0.5,
+              },
+            }}
+          >
             {children}
           </BtnPrimary>
         );
       }
       return (
-        <Link href={link}>
+        <Link href={link} passHref={true}>
           <BtnPrimary disabled={disable} onClick={click}>
             {children}
           </BtnPrimary>
@@ -67,7 +88,7 @@ const Btn = ({ link, type, children, click, disable = false }) => {
         return <BtnDefaultFull>{children}</BtnDefaultFull>;
       }
       return (
-        <Link href={link}>
+        <Link href={link} passHref={true}>
           <BtnDefaultFull>{children}</BtnDefaultFull>
         </Link>
       );
