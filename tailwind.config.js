@@ -22,6 +22,7 @@ module.exports = {
         "blur-blue-bg": "rgba(1, 228, 240, 0.03)",
         "dark-blue-bg": "#283A8F",
         "light-blue-bg": "#01E4F0",
+        "dark-blue-text": "#1A254A",
       },
     },
   },
