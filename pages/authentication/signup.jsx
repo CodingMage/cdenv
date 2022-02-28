@@ -56,8 +56,8 @@ function Signup() {
         <Left>
           <div tw="mt-[58.5px] flex flex-col gap-16">
             {signUpData.map((item) => (
-              <>
-                <LeftItem key={item.title}>
+              <div key={item.title}>
+                <LeftItem>
                   <LeftItemHeader>
                     {item.icon}
                     <div>{item.title}</div>
@@ -65,7 +65,7 @@ function Signup() {
 
                   <LeftItemNote>{item.notes}</LeftItemNote>
                 </LeftItem>
-              </>
+              </div>
             ))}
           </div>
         </Left>
