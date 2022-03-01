@@ -1,14 +1,14 @@
 import { NextResponse } from "next/server";
 import redirects from "../../lib/redirects";
+import { getCookie } from "cookies-next";
 
 export async function middleware(req) {
-  const isLoggedIn = !true;
+  const token = getCookie("token", { req });
   const { pathname } = req.nextUrl;
-
-  if (isLoggedIn) {
+  if (token) {
     return NextResponse.next();
   } else if (
-    !isLoggedIn &&
+    !token &&
     pathname !== "/authentication/signin" &&
     pathname !== "/authentication/signup"
   ) {

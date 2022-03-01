@@ -1,4 +1,4 @@
-import { Account, Environments, Save } from "../component/Icons";
+import { Account, Environments, Save } from "../components/Icons";
 
 export const signUpData = [
   {

@@ -1,10 +1,10 @@
 import React from "react";
-import tw, { css, styled } from "twin.macro";
+import tw, { styled } from "twin.macro";
 import Image from "next/image";
-import { Account } from "../../component/Icons";
+import { Account } from "../../components/Icons";
 import { signUpData } from "../../data/signup";
 import Link from "next/link";
-import FormField from "../../component/FormField/formField";
+import FormField from "../../components/FormField/formField";
 import { useForm } from "react-hook-form";
 
 const SignUpContainer = styled.main`
@@ -13,7 +13,7 @@ const SignUpContainer = styled.main`
 `;
 
 const Left = tw.div`w-full bg-[#F4F4F4] rounded-l-[12px] pl-[38px] pr-[35.25px] `;
-const Right = tw.div`w-full bg-white rounded-r-[12px] px-[62.5px] pt-[41px] pb-[66px]`;
+const Right = tw.div`w-full bg-white rounded-r-[12px] flex px-[62.5px] pt-[41px] pb-[66px]`;
 
 const LeftItem = tw.div`flex flex-col max-w-[227px] w-full`;
 const LeftItemHeader = tw.div`flex justify-start items-center gap-3 text-dark-blue-text text-[20px] leading-6 font-normal`;
@@ -73,27 +73,15 @@ function Signup() {
         <Right>
           <div tw="flex justify-center gap-[15px] flex-col items-center">
             <FormField
-              label="First name"
-              title="First name"
+              label="Username"
+              title="Username"
               type="text"
-              name="firstname"
-              placeholder="First name"
+              name="username"
+              placeholder="Username"
               full={true}
               required={true}
               register={register}
               errors={errors}
-            />
-            <FormField
-              label="Last name"
-              title="Last name"
-              type="text"
-              name="lastname"
-              placeholder="Last name"
-              full={true}
-              required={true}
-              register={register}
-              errors={errors}
-              minLength={8}
             />
 
             <FormField
@@ -109,37 +97,16 @@ function Signup() {
             />
 
             <FormField
-              label="Company name "
-              title="Company name "
-              type="text"
-              name="company"
-              placeholder="Company name"
+              label="Password"
+              title="Password"
+              type="password"
+              name="password"
+              placeholder="Password"
               full={true}
               required={true}
               register={register}
               errors={errors}
-            />
-            <FormField
-              label="Role"
-              title="Role"
-              type="test"
-              name="role"
-              placeholder="Role"
-              full={true}
-              required={true}
-              register={register}
-              errors={errors}
-            />
-            <FormField
-              label="Primary development language"
-              title="Primary development language"
-              type="text"
-              name="language"
-              placeholder="Primary development language"
-              full={true}
-              required={true}
-              register={register}
-              errors={errors}
+              minLength={8}
             />
 
             <button

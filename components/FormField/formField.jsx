@@ -1,4 +1,6 @@
 import tw, { styled } from "twin.macro";
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+import { useState } from "react";
 const FormFieldShell = styled.div`
   /* ${({ full }) => (full === true ? tw`w-full` : tw`w-[300px]`)} */
   ${tw`flex flex-col gap-[10px] w-full`}
@@ -15,7 +17,8 @@ const FormFieldLabel = styled.label`
 
 const FormFieldInput = styled.input`
   font-family: inherit;
-  ${tw` text-sm appearance-none border border-[#8E8E8E] border-solid rounded-[6px] py-[11px] px-[16.53px] w-full h-10 leading-4   bg-transparent text-[#1A254A] placeholder-[#CDCDCD] outline-none`};
+  outline: none !important;
+  ${tw` text-sm appearance-none border-0 py-[11px] px-[16.53px] w-full h-10 leading-4   bg-transparent text-[#1A254A] placeholder-[#CDCDCD] `};
 `;
 
 const FormField = ({
@@ -33,6 +36,11 @@ const FormField = ({
   required = false,
   errors,
 }) => {
+  const [passwordShown, setPasswordShown] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setPasswordShown(!passwordShown);
+  };
   return (
     <div
       style={{
@@ -44,9 +52,9 @@ const FormField = ({
         <FormFieldLabel htmlFor={label} required={required}>
           {title}
         </FormFieldLabel>
-        <div>
+        <div tw="flex items-center gap-2  border border-[#8E8E8E] border-solid rounded-[6px] ">
           <FormFieldInput
-            type={type}
+            type={passwordShown && type === "password" ? "text" : type}
             id={label}
             name={name}
             placeholder={placeholder}
@@ -55,13 +63,25 @@ const FormField = ({
             minLength={minLength}
             {...register(name, { required: "This is required." })}
           />
+
           {/* <p tw="text-red-400 text-sm">
           {
             //If error exists in the textField
             errors[name] && errors[name].message
           }
         </p> */}
-          <div></div>
+          {name === "password" && (
+            <div
+              tw="cursor-pointer pr-2.5"
+              onClick={() => togglePasswordVisibility()}
+            >
+              {passwordShown ? (
+                <AiFillEyeInvisible color="#c6c2c2" />
+              ) : (
+                <AiFillEye color="#c6c2c2" />
+              )}
+            </div>
+          )}
         </div>
       </FormFieldShell>
     </div>

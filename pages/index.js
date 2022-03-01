@@ -1,7 +1,7 @@
 import tw, { css, styled } from "twin.macro";
-import Btn from "../component/Buttons/Btn";
+import Btn from "../components/Buttons/Btn";
 import Image from "next/image";
-import AboutCard from "../component/AboutCard";
+import AboutCard from "../components/AboutCard";
 import Link from "next/link";
 import { motion } from "framer-motion";
 const about = [
@@ -53,7 +53,12 @@ export default function Home() {
     <div className="home">
       <Hero>
         <Nav>
-          <Image src="/assets/svg/cdEnv_logo.svg" width="88" height="27" />
+          <Image
+            src="/assets/svg/cdEnv_logo.svg"
+            width="88"
+            height="27"
+            alt="cdenv"
+          />
           <div tw="flex items-center justify-center gap-8">
             <Btn type="transparent" link="/authentication/signin">
               <p tw="text-borderBlue">Log in</p>
@@ -140,24 +145,46 @@ export default function Home() {
             width="908"
             height="522"
             objectFit="contain"
+            alt="cdenv"
           />
         </div>
       </div>
 
       <Footer>
-        <Image src="/assets/img/cdEnvLogo.png" width="88" height="27" />
+        <Image
+          src="/assets/img/cdEnvLogo.png"
+          width="88"
+          height="27"
+          alt="Cdenv"
+        />
         <div tw="flex items-center justify-center gap-[60px] ">
-          <Link tw="text-[#8E8E8E] text-[16px] leading-[18px]" href="">
+          <Link
+            tw="text-[#8E8E8E] text-[16px] leading-[18px]"
+            href="/"
+            passHref={true}
+          >
             <a> Host environment</a>
           </Link>
-          <Link tw="text-[#8E8E8E] text-[16px] leading-[18px]" href="">
+          <Link
+            tw="text-[#8E8E8E] text-[16px] leading-[18px]"
+            href="/"
+            passHref={true}
+          >
             <a> FAQs</a>
           </Link>
-          <Link tw="text-[#8E8E8E] text-[16px] leading-[18px]" href="">
+          <Link
+            tw="text-[#8E8E8E] text-[16px] leading-[18px]"
+            href="/"
+            passHref={true}
+          >
             <a> Documentation</a>
           </Link>
         </div>
-        <Link tw="text-[#8E8E8E] text-[16px] leading-[18px]" href="">
+        <Link
+          tw="text-[#8E8E8E] text-[16px] leading-[18px]"
+          href="/"
+          passHref={true}
+        >
           <a> © Copyright 2021.</a>
         </Link>
       </Footer>
