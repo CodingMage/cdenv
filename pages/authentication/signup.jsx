@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import tw, { styled } from "twin.macro";
 import Image from "next/image";
 import { Account } from "../../components/Icons";
@@ -6,6 +6,9 @@ import { signUpData } from "../../data/signup";
 import Link from "next/link";
 import FormField from "../../components/FormField/formField";
 import { useForm } from "react-hook-form";
+import { useCreateUser } from "../../queries/queryHooks/createUser";
+import { BounceLoader } from "react-spinners";
+import { removeCookies } from "cookies-next";
 
 const SignUpContainer = styled.main`
   grid-template-columns: 300px 370px;
@@ -13,7 +16,7 @@ const SignUpContainer = styled.main`
 `;
 
 const Left = tw.div`w-full bg-[#F4F4F4] rounded-l-[12px] pl-[38px] pr-[35.25px] `;
-const Right = tw.div`w-full bg-white rounded-r-[12px] flex px-[62.5px] pt-[41px] pb-[66px]`;
+const Right = tw.form`w-full bg-white rounded-r-[12px] flex px-[62.5px] pt-[41px] pb-[66px]`;
 
 const LeftItem = tw.div`flex flex-col max-w-[227px] w-full`;
 const LeftItemHeader = tw.div`flex justify-start items-center gap-3 text-dark-blue-text text-[20px] leading-6 font-normal`;
@@ -21,9 +24,21 @@ const LeftItemNote = tw.div`text-left max-w-[226.74px] w-full text-[#8E8E8E] tex
 function Signup() {
   const {
     register,
+    handleSubmit,
     formState: { errors, isValid },
   } = useForm({ mode: "onChange" });
+  const { mutate, isLoading } = useCreateUser();
 
+  const onSubmit = (data) => {
+    let user = {
+      user: data,
+    };
+    // console.log(user);
+    mutate(user);
+  };
+  useEffect(() => {
+    removeCookies("token");
+  }, []);
   return (
     <div tw="bg-[#283A8F] w-full min-h-screen ">
       <nav tw="flex justify-around  pt-[30px] items-center">
@@ -70,7 +85,7 @@ function Signup() {
           </div>
         </Left>
 
-        <Right>
+        <Right onSubmit={handleSubmit(onSubmit)}>
           <div tw="flex justify-center gap-[15px] flex-col items-center">
             <FormField
               label="Username"
@@ -113,11 +128,12 @@ function Signup() {
               // disabled={enableBtn}
               disabled={!isValid}
               css={[
-                tw`w-full  h-12 flex justify-center cursor-pointer items-center p-4 bg-[#F4F4F4] mt-[15px] rounded-md border-0`,
+                tw`w-full  h-12 flex gap-2 justify-center cursor-pointer items-center p-4 bg-[#F4F4F4] mt-[15px] rounded-md border-0`,
                 isValid && tw`bg-dark-blue-bg text-light-blue-bg`,
               ]}
             >
               Create account
+              <BounceLoader size={23} color={"#01E4F0"} loading={isLoading} />
             </button>
           </div>
         </Right>

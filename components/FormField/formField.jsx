@@ -64,12 +64,6 @@ const FormField = ({
             {...register(name, { required: "This is required." })}
           />
 
-          {/* <p tw="text-red-400 text-sm">
-          {
-            //If error exists in the textField
-            errors[name] && errors[name].message
-          }
-        </p> */}
           {name === "password" && (
             <div
               tw="cursor-pointer pr-2.5"

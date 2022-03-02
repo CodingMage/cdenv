@@ -24,7 +24,7 @@ const BtnAll = styled(BtnDefault)`
 
 const BtnDefaultFull = styled.button`
   font-size: 0.875rem;
-  ${tw`flex gap-4  items-center bg-transparent  font-medium hover:bg-blur-blue-bg h-12  focus:bg-borderBlue p-4 text-white rounded-md border-solid border-2 border-blue-500 cursor-pointer`};
+  ${tw`flex gap-4  items-center bg-transparent  font-medium hover:bg-blur-blue-bg h-12  focus:bg-borderBlue p-4 text-white rounded-md border-solid border-2 border-dark-blue-bg cursor-pointer`};
 `;
 
 const Btn = ({ link, type, children, click, disable = false }) => {

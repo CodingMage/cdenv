@@ -3,11 +3,11 @@ import Image from "next/image";
 import FormField from "../../components/FormField/formField";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLoginUser } from "../../queries/queryHooks/signinUser";
 
 import { BounceLoader } from "react-spinners";
-import { getCookie } from "cookies-next";
+import { getCookie, removeCookies } from "cookies-next";
 
 const SignInForm = tw.form`flex justify-center flex-col w-full max-w-[386px] bg-white rounded-xl`;
 function SignIn() {
@@ -16,7 +16,6 @@ function SignIn() {
     register,
     handleSubmit,
     formState: { errors, isValid },
-    getValues,
   } = useForm({ mode: "onChange" });
   const { mutate, isLoading } = useLoginUser();
 
@@ -26,6 +25,9 @@ function SignIn() {
     };
     mutate(user);
   };
+  useEffect(() => {
+    removeCookies("token");
+  }, []);
   return (
     <div tw="bg-[#283A8F] w-full min-h-screen ">
       <Link href="/" passHref={true}>

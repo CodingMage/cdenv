@@ -7,12 +7,13 @@ import { useGetUser } from "../../queries/queryHooks/user";
 import useGlobalState from "../../store/global";
 
 function Dashboard({ token }) {
-  const { token: dataT, te } = useGlobalState();
-
   const { data, isLoading } = useGetUser(token);
 
-  console.log("data", te);
-  return <Layout></Layout>;
+  return (
+    <>
+      <Layout></Layout>
+    </>
+  );
 }
 
 export default Dashboard;

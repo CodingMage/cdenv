@@ -12,6 +12,8 @@ import { ErrorBoundary } from "react-error-boundary";
 import ErrorPage from "./500";
 import { toast, ToastBar, Toaster } from "react-hot-toast";
 import NextNProgress from "nextjs-progressbar";
+import { ReactQueryDevtools } from "react-query/devtools";
+
 const config = {
   color: `#01E4F0`,
   showOnShallow: true,
@@ -51,6 +53,9 @@ function MyApp({ Component, pageProps }) {
 
                 <Component {...pageProps} />
                 <Toaster position="top-right" />
+                {process.env.NODE_ENV === "development" && (
+                  <ReactQueryDevtools initialIsOpen={false} />
+                )}
               </Hydrate>
             </ErrorBoundary>
           )}
