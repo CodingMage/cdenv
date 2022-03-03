@@ -8,6 +8,7 @@ import { useLoginUser } from "../../queries/queryHooks/signinUser";
 
 import { BounceLoader } from "react-spinners";
 import { getCookie, removeCookies } from "cookies-next";
+import axios from "axios";
 
 const SignInForm = tw.form`flex justify-center flex-col w-full max-w-[386px] bg-white rounded-xl`;
 function SignIn() {
@@ -28,6 +29,24 @@ function SignIn() {
   useEffect(() => {
     removeCookies("token");
   }, []);
+
+  let f = {
+    user: {
+      email: "yusufkehinde11@gmail.com",
+      password: "12345678",
+    },
+  };
+  async function getUser() {
+    try {
+      const response = await axios.post(
+        "http://cdenv.herokuapp.com/api/users/login",
+        f
+      );
+      console.log(response);
+    } catch (error) {
+      console.error(error);
+    }
+  }
   return (
     <div tw="bg-[#283A8F] w-full min-h-screen ">
       <Link href="/" passHref={true}>
@@ -43,7 +62,7 @@ function SignIn() {
       <div tw="flex w-full justify-center">
         <SignInForm onSubmit={handleSubmit(onSubmit)}>
           <div
-            onClick={() => console.log(getCookie("token"))}
+            onClick={() => getUser()}
             tw="flex w-full pt-[20px]  pr-[25px] justify-end"
           >
             <Image alt="" src="/assets/svg/close.svg" height="24" width="24" />
