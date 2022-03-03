@@ -4,7 +4,7 @@ import { getCookie } from "cookies-next";
 const token = getCookie("token");
 
 const Instance = axios.create({
-  baseURL: "http://cdenv.herokuapp.com/api",
+  baseURL: "https://cdenv.herokuapp.com/api",
   headers: {
     accept: "*/*",
     authorization: `Bearer ${token}`,
