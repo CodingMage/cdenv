@@ -4,7 +4,7 @@ import Image from "next/image";
 const AboutCardContainer = styled.div`
   background: rgba(1, 228, 240, 0.03);
   border-radius: 5px;
-  ${tw`flex flex-col pl-[50px] pr-[55.98px] max-w-[532px]`}
+  ${tw`flex flex-col pl-[50px] pr-[55.98px] max-w-[532px] break-tablet:(place-items-center)`}
 `;
 
 const AboutCardTop = styled.div`
@@ -18,7 +18,7 @@ const AboutCard = ({ src, title, description }) => {
         <Image src={src} width="24" height="24" alt={title} />
         {title}
       </AboutCardTop>
-      <div tw="text-[#1A254A] text-[20px] font-light leading-[26px] pb-[35.64px]">
+      <div tw="text-[#1A254A] text-[20px] font-light leading-[26px] pb-[35.64px] break-tablet:(text-center) break-mobile:(text-base max-w-sm)">
         {description}
       </div>
     </AboutCardContainer>

@@ -38,11 +38,11 @@ const Nav = tw.div`
 flex justify-between items-center px-12 p-7
 `;
 const Footer = tw.div`
-flex justify-between items-center px-[57.55px] py-[36.5px] bg-white text-[#8E8E8E]
+flex justify-between items-center px-[57.55px] py-[36.5px] bg-white text-[#8E8E8E] break-mobile:(flex-col gap-7)
 `;
 const Left = styled.div`
   padding-left: 50.65px;
-  ${tw`pt-32  flex justify-center items-center flex-col`}
+  ${tw` pt-32  flex justify-center items-center flex-col break-tablet:(p-3.5 pt-16)`}
 `;
 
 const HostBtn = tw(
@@ -69,18 +69,26 @@ export default function Home() {
           </div>
         </Nav>
 
-        <div tw="grid grid-cols-2 pb-[157.06px]">
+        <div tw="grid grid-cols-2 pb-[157.06px] break-tablet:(grid-cols-1 place-items-center pb-8)">
           <Left>
-            <div css={{ maxWidth: "587.7px" }}>
+            <div
+              css={[
+                tw`break-tablet:(flex flex-col justify-center items-center)`,
+                { maxWidth: "587.7px" },
+              ]}
+            >
               <div
-                css={[tw`text-5xl text-white mb-6`, { lineHeight: "121.9%" }]}
+                css={[
+                  tw`text-5xl text-white mb-6  break-tablet:(text-center) break-mobile:(text-3xl)`,
+                  { lineHeight: "121.9%" },
+                ]}
               >
                 Securely <span tw="text-[#01E4F0]"> store</span> &{" "}
                 <span tw="text-[#01E4F0]">access</span> API tokens, passwords
                 keys and more{" "}
               </div>
 
-              <div tw="text-xl font-light text-white leading-snug mb-[50px]">
+              <div tw="text-xl  font-light text-white leading-snug mb-[50px] break-tablet:(text-center) break-mobile:(text-base max-w-sm)">
                 cdEnv is a self-hostable and secured system for storing and
                 accessing keys and variables via HTTP API and CLI.
               </div>
@@ -98,7 +106,7 @@ export default function Home() {
               </HostBtn>
             </div>
           </Left>
-          <div tw="pt-[98.94px] flex justify-end pr-14 ">
+          <div tw="pt-[98.94px] flex justify-end pr-14 break-tablet:(p-20 pt-16) ">
             <Image
               src="/assets/svg/Hero_Image.svg"
               width="542"
@@ -111,15 +119,15 @@ export default function Home() {
 
       <div tw="bg-white pb-[173px]">
         <div tw="flex justify-center items-center flex-col pt-[70px]">
-          <div tw="text-[#1A254A] font-bold text-[50px] pb-4">
+          <div tw="text-[#1A254A] font-bold text-[50px] pb-4 break-mobile:(text-3xl)">
             What is cdEnv?
           </div>
-          <div tw="text-[#8E8E8E] text-[20px] leading-[26px] max-w-[541.99px] text-center ">
+          <div tw="text-[#8E8E8E] text-[20px] leading-[26px] max-w-[541.99px] text-center break-mobile:(text-base max-w-sm)">
             cdEnv is a self-hostable and secured system for storing and acessing
             keys and variables via HTTP API and CLI.
           </div>
         </div>
-        <div tw="grid grid-cols-2 place-items-center gap-x-[50px] gap-y-10 max-w-[1114px] my-0 mx-auto mt-[100px] ">
+        <div tw="grid grid-cols-2 place-items-center gap-x-[50px] gap-y-10 max-w-[1114px] my-0 mx-auto mt-[100px] break-tablet:(grid-cols-1 place-items-center) break-mobile:(mt-12 p-4) ">
           {about.map((item, idx) => (
             <AboutCard
               key={`AboutCard ${idx}`}
@@ -133,13 +141,15 @@ export default function Home() {
 
       <div tw="bg-[#283A8F]">
         <div tw="flex justify-center items-center flex-col pt-[70px]">
-          <div tw="text-[#01E4F0] font-bold text-[50px] pb-4">Learn more</div>
-          <div tw="text-white text-[20px] leading-[26px] max-w-[541.99px] text-center ">
+          <div tw="text-[#01E4F0] font-bold text-[50px] pb-4 break-mobile:(text-3xl)">
+            Learn more
+          </div>
+          <div tw="text-white text-[20px] leading-[26px] max-w-[541.99px] text-center break-mobile:(text-base max-w-sm)">
             Access cdEnv documentation on Github to know all about the project
             and how to better us it.
           </div>
         </div>
-        <div tw="flex justify-center items-center mt-[77px] pb-[161.44px]">
+        <div tw="flex justify-center items-center mt-[77px] p-4 pb-[161.44px] ">
           <Image
             src="/assets/img/cdenv1.png"
             width="908"
@@ -157,7 +167,7 @@ export default function Home() {
           height="27"
           alt="Cdenv"
         />
-        <div tw="flex items-center justify-center gap-[60px] ">
+        <div tw="flex items-center justify-center gap-[60px] break-mobile:(flex-col gap-6) ">
           <Link
             tw="text-[#8E8E8E] text-[16px] leading-[18px]"
             href="/"

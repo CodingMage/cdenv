@@ -25,5 +25,10 @@ module.exports = {
         "dark-blue-text": "#1A254A",
       },
     },
+    screens: {
+      "break-tablet": { max: "1114px" },
+      "break-mobile": { max: "664px" },
+      "break-xsmobile": { max: "500px" },
+    },
   },
 };
