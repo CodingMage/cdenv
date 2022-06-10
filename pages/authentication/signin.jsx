@@ -9,9 +9,13 @@ import { useLoginUser } from "../../queries/queryHooks/signinUser";
 import { BounceLoader } from "react-spinners";
 import { getCookie, removeCookies } from "cookies-next";
 import axios from "axios";
+import { useRouter } from "next/router";
+import { useCheckViewport, useViewport } from "../../hooks/useViewport";
+import useDeviceDetect from "../../hooks/useDeviceDetect";
 
 const SignInForm = tw.form`flex justify-center flex-col w-full max-w-[386px] bg-white rounded-xl`;
 function SignIn() {
+  const { router } = useRouter();
   const [enableBtn, setEnableBtn] = useState(true);
   const {
     register,
@@ -30,40 +34,33 @@ function SignIn() {
     removeCookies("token");
   }, []);
 
-  let f = {
-    user: {
-      email: "yusufkehinde11@gmail.com",
-      password: "12345678",
-    },
+  const goHome = () => {
+    router.push("/");
   };
-  async function getUser() {
-    try {
-      const response = await axios.post(
-        "http://cdenv.herokuapp.com/api/users/login",
-        f
-      );
-      console.log(response);
-    } catch (error) {
-      console.error(error);
-    }
-  }
+
+  const { isValid: isValidViewport } = useCheckViewport(685);
+
   return (
-    <div tw="bg-[#283A8F] w-full min-h-screen ">
+    <div tw="bg-[#283A8F] w-auto flex flex-col justify-center items-center min-h-screen pt-28 break-mobile:(bg-white) ">
       <Link href="/" passHref={true}>
-        <div tw="flex justify-center pt-[113px] mb-[80px] cursor-pointer">
+        <div tw="flex justify-center  mb-[80px] cursor-pointer">
           <Image
-            src="/assets/svg/cdEnv_big_logo.svg"
-            width="120"
-            height="36.82"
+            src={
+              isValidViewport
+                ? "/assets/img/cdEnvlogoSignin.png"
+                : "/assets/svg/cdEnv_big_logo.svg"
+            }
+            width={isValidViewport ? "67.17" : "120"}
+            height={isValidViewport ? "20.61" : "36.82"}
             alt="cdenv logo"
           />
         </div>
       </Link>
       <div tw="flex w-full justify-center">
-        <SignInForm onSubmit={handleSubmit(onSubmit)}>
+        <SignInForm onSubmit={handleSubmit(onSubmit)} name="login-form">
           <div
-            onClick={() => getUser()}
-            tw="flex w-full pt-[20px]  pr-[25px] justify-end"
+            onClick={() => goHome()}
+            tw="flex w-full pt-[20px] cursor-pointer pr-[25px] justify-end break-mobile:(hidden)"
           >
             <Image alt="" src="/assets/svg/close.svg" height="24" width="24" />
           </div>
@@ -112,10 +109,12 @@ function SignIn() {
               <BounceLoader size={23} color={"#01E4F0"} loading={isLoading} />
             </button>
           </div>
-          <div tw="w-full  flex justify-center items-center p-4 bg-[#F4F4F4] mt-[25px] text-sm text-[#8E8E8E] rounded-b-md">
+          <div tw="w-full  flex justify-center items-center p-4 bg-[#F4F4F4] mt-[25px] text-sm text-[#8E8E8E] rounded-b-md font-normal break-mobile:(bg-white)">
             New to cdEnv?{"  "}
             <Link href="/authentication/signup" passHref={true}>
-              <span tw="text-[#1A254A] pl-[5px] cursor-pointer">Sign up</span>
+              <span tw="text-[#1A254A] pl-[5px] cursor-pointer break-mobile:(text-dark-blue-bg font-bold)">
+                Sign up
+              </span>
             </Link>
           </div>
         </SignInForm>
@@ -125,7 +124,7 @@ function SignIn() {
         <span tw="underline cursor-pointer">Forget your password?</span>
       </div>
 
-      <div tw="flex pb-[30px]  justify-center items-center text-white text-sm leading-4 ">
+      <div tw="flex pb-[30px]  justify-center items-center text-white text-sm leading-4 break-mobile:(text-[#8E8E8E]) ">
         <span>© Copyright {new Date().getFullYear()}</span>
       </div>
     </div>

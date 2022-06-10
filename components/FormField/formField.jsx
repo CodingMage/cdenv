@@ -66,6 +66,7 @@ const FormField = ({
 
           {name === "password" && (
             <div
+              id="showPasswordButton"
               tw="cursor-pointer pr-2.5"
               onClick={() => togglePasswordVisibility()}
             >

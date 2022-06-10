@@ -41,6 +41,20 @@ function Layout({ children }) {
             </div>
           </div>
         )}
+
+        <div tw="w-full h-full flex flex-col justify-center items-center gap-8">
+          <CreateBtn>
+            <div>
+              <CEnv />
+            </div>
+            <span tw="text-[#8E8E8E]">Create new environment</span>
+          </CreateBtn>
+
+          <div tw="max-w-[373px] text-center text-[#8E8E8E] text-[14px] leading-[16px]">
+            Create virtual environment to store your keys and values privately
+            during project development.
+          </div>
+        </div>
       </section>
       <Footer />
     </main>

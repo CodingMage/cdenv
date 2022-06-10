@@ -1,7 +1,8 @@
 import React from "react";
 import tw, { styled } from "twin.macro";
+import { useCheckViewport } from "../../hooks/useViewport";
 import Btn from "../Buttons/Btn";
-import { CdenvWelcomIcon, CEnv, cEnv, SearchIcon } from "../Icons";
+import { CdenvWelcomIcon, CEnv, cEnv, CloseIcon, SearchIcon } from "../Icons";
 
 const Welcome = styled.header`
   padding: 38px 10px 38px 10px;
@@ -12,9 +13,9 @@ const Welcome = styled.header`
 `;
 const WelcomeLeft = tw.div`max-w-[394.12px] w-full flex gap-[34px] items-center`;
 const WelcomeLeftNote = tw.div` flex flex-col gap-1`;
-const WelcomeLeftNoteTitle = tw.div` text-light-blue-bg font-medium text-xl`;
-const WelcomeLeftNoteSubTitle = tw.div` text-white font-normal text-[14px] leading-[16px]`;
-const WelcomeRightDismissBtn = tw.button` text-white border border-solid border-white rounded-md w-20 h-12 font-normal text-[14px] leading-[16px] flex justify-center items-center`;
+const WelcomeLeftNoteTitle = tw.div` text-light-blue-bg font-medium text-xl break-mobile:(text-[16px] leading-[18px])`;
+const WelcomeLeftNoteSubTitle = tw.div` text-white font-normal text-[14px] leading-[16px] break-mobile:(text-[16px] leading-[18px])`;
+const WelcomeRightDismissBtn = tw.button` text-white border border-solid border-white rounded-md w-20 h-12 font-normal text-[14px] leading-[16px] flex justify-center items-center break-mobile:(hidden)`;
 
 //Main header
 
@@ -34,13 +35,19 @@ const SearchInput = styled.input`
 `;
 
 function Header({ dismissWelcome, setDismissWelcome }) {
+  const { isValid: isValidViewport } = useCheckViewport(685);
+
   return (
     <section>
       {!dismissWelcome && (
         <Welcome dismiss={dismissWelcome}>
           <WelcomeLeft>
             <div>
-              <CdenvWelcomIcon />
+              {isValidViewport ? (
+                <CdenvWelcomIcon width="22px" height="34px" />
+              ) : (
+                <CdenvWelcomIcon width="24px" height="36px" />
+              )}
             </div>
             <WelcomeLeftNote>
               <WelcomeLeftNoteTitle>Welcome to cdEnv</WelcomeLeftNoteTitle>
@@ -54,6 +61,12 @@ function Header({ dismissWelcome, setDismissWelcome }) {
           >
             Dismiss
           </WelcomeRightDismissBtn>
+          <div
+            tw="hidden break-mobile:(block cursor-pointer) "
+            onClick={() => setDismissWelcome(!dismissWelcome)}
+          >
+            <CloseIcon />
+          </div>
         </Welcome>
       )}
       {dismissWelcome && (

@@ -27,7 +27,7 @@ module.exports = {
     },
     screens: {
       "break-tablet": { max: "1114px" },
-      "break-mobile": { max: "664px" },
+      "break-mobile": { max: "685px" },
       "break-xsmobile": { max: "500px" },
     },
   },

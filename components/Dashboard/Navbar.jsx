@@ -4,10 +4,11 @@ import { MoreIcon, PersonIcon } from "../Icons";
 
 const Nav = styled.nav`
   padding: 23.5px 50.49px 19.5px 49.51px;
-  ${tw`flex justify-between items-center`};
+  ${tw`flex justify-between items-center break-mobile:(py-5 pr-3.5 pl-4)`};
 `;
 const LinkContainer = tw.div`flex justify-center items-center max-w-[189px] h-6 gap-[30px]`;
 const LinkSubContainer = tw.div`flex max-w-[76px] h-6 gap-2.5 text-[16px] text-[#8E8E8E]`;
+const LinkSubContainerTitle = tw.span`break-mobile:(hidden)`;
 
 const Navbar = () => {
   return (
@@ -22,12 +23,12 @@ const Navbar = () => {
         <LinkContainer>
           <LinkSubContainer>
             <MoreIcon />
-            <span>Menu</span>
+            <LinkSubContainerTitle>Menu</LinkSubContainerTitle>
           </LinkSubContainer>
 
           <LinkSubContainer>
             <PersonIcon />
-            <span>Profile</span>
+            <LinkSubContainerTitle>Profile</LinkSubContainerTitle>
           </LinkSubContainer>
         </LinkContainer>
       </Nav>
